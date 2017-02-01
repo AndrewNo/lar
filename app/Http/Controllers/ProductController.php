@@ -76,4 +76,71 @@ class ProductController extends Controller
 
 
     }
+
+    public function prodEdit($id)
+    {
+        $product = Product::find($id);
+
+        $categories = Category::all();
+
+
+        return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
+    }
+
+    public function prodUpdate(Request $request, $id)
+    {
+        $file = $request->file('image');
+        $data = $request->all();
+
+        $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . date('d-m-Y') . '/';
+
+        if (!file_exists($uploads)) {
+            mkdir($uploads);
+        }
+
+        if (!empty($request->file())) {
+            $name = substr($file->getBasename(), 0, -4);
+
+            Image::make($request->file('image'))->resize(150, 150)->save($uploads . '150_150_'
+                . $name . '.' . $file->extension());
+
+
+            $data['image'] = '/uploads/150_150_'
+                . $name . '.' . $file->extension();
+        }
+
+        if (isset($data['is_new'])) {
+            $data['is_new'] = 1;
+        } else {
+            $data['is_new'] = 0;
+        }
+
+        if (isset($data['is_active'])) {
+            $data['is_active'] = 1;
+        } else {
+            $data['is_active'] = 0;
+        }
+        $product = Product::find($id);
+
+        $product->title = $data['title'];
+        $product->descr = $data['descr'];
+        $product->category_id = $data['category_id'];
+        $product->is_active = $data['is_active'];
+        $product->position = $data['position'];
+        isset($data['image']) ? $product->image = $data['image'] : false;
+        $product->is_new = $data['is_new'];
+
+        $product->save();
+
+        return redirect('/admin/shop');
+    }
+
+    public function prodDelete($id)
+    {
+        $product =Product::find($id);
+
+        $product->delete();
+
+        return redirect('/admin/shop');
+    }
 }

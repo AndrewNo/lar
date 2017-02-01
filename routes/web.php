@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('shop', 'ProductController@prodShow');
     Route::get('product-add', 'ProductController@prodAdd');
     Route::post('product-store', 'ProductController@prodStore');
+    Route::get('product-edit/{id}', 'ProductController@prodEdit');
+    Route::put('product-update/{id}', 'ProductController@prodUpdate');
+    Route::delete('product-delete/{id}', 'ProductController@prodDelete');
     //Auth::routes();
 });
 

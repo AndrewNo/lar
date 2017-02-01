@@ -20,9 +20,9 @@
                     <td>{{ $product->title  }}</td>
                     <td><img src="{{$product->image}} " alt=""></td>
                     <td>{{ $product->descr }}</td>
-                    <td><a href="/admin/category-edit/{{ $product->id }}">Edit</a></td>
+                    <td><a href="/admin/product-edit/{{ $product->id }}">Edit</a></td>
                     <td>
-                        <form action="/admin/category-delete/{{ $product->id }}" method="post">
+                        <form action="/admin/product-delete/{{ $product->id }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="delete">
                             <button type="submit" class="btn btn-group-sm btn-danger">Delete</button>
