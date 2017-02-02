@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -19,8 +20,21 @@ class AdminController extends Controller
             return redirect('admin/login');
         }
 
-        $posts = Blog::all();
-        return view('admin.tpls.index', ['posts' => $posts]);
+        $page = Page::find(1);
+        return view('admin.tpls.index', ['page' => $page]);
+    }
+
+    public function update(Request $request, $id){
+        $data = $request->all();
+
+        $page = Page::find($id);
+
+        $page->index = $data['index'];
+        $page->about = $data['about'];
+
+        $page->save();
+
+        return redirect('/admin/');
     }
 
     public function getLogin()

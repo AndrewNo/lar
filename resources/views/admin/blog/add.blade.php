@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <label for="content" class="control-label">Content:</label>
-            <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" class="tiny" cols="30" rows="10"></textarea>
         </div>
         <div class="form-group">
             <label for="is_active" class="control-label">Is active:</label>

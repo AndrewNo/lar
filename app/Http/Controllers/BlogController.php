@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function blogShow()
+    {
+        $posts = Blog::all();
+        return view('admin.blog.show', ['posts' => $posts]);
+    }
+
     public function postAdd()
     {
         if (!\Auth::check()) {

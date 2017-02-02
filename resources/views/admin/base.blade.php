@@ -25,6 +25,17 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src='/vendors/tinymce/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: '.tiny',
+            toolbar: "image",
+            plugins: "image imagetools",
+            imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
+            image_advtab: true
+        });
+    </script>
+
 </head>
 
 <body>
@@ -44,9 +55,12 @@
         @if(Auth::check())
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/admin/">Home</a></li>
+                <li class="active"><a href="/admin/blog">Blog</a></li>
                 <li><a href="/admin/categories">Categories</a></li>
                 <li><a href="/admin/shop">Shop</a></li>
+                <li><a href="/admin/gallery">Gallery</a></li>
+                <li><a href="/admin/orders">Orders</a></li>
+                <li><a href="/admin/contacts">Contact</a></li>
 
                 <li>
                     <form action="admin/logout" method="post">

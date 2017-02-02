@@ -4,44 +4,24 @@
     <div class="jumbotron">
         <h1>Welcome to Admin Panel</h1>
     </div>
-    <div class="page-header">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <td>Id</td>
-                <td>Title</td>
-                <td>Content</td>
-                <td>Is active</td>
-                <td>Action</td>
-                <td>Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($posts as $post)
-                <tr>
-                    <td>{{ $post->id }}</td>
-                    <td>{{ $post->title  }}</td>
-                    <td>{{ $post->content }}</td>
-                    @if($post->is_active)
-                        <td>+</td>
-                    @else
-                        <td>-</td>
-                    @endif
-                    <td><a href="/admin/post-edit/{{ $post->id }}">Edit</a></td>
-                    <td>
-                        <form action="/admin/post-delete/{{ $post->id }}" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-group-sm btn-danger">Delete</button>
-                        </form>
-                        </td>
-                </tr>
-            @endforeach
 
-            </tbody>
-        </table>
-    </div>
-    <div class="page-header">
-        <a href="/admin/post-add" class="btn btn-primary">New post</a>
-    </div>
+    <form action="{{ url('admin/') }}/update/1" method="post" class="form-group col-lg-6">
+        {{ csrf_field() }}
+        <input type="hidden" name="_method" value="put">
+        <div class="form-group">
+            <h2>Index page:</h2>
+            <textarea name="index"  class="tiny" cols="30" rows="10">{{ $page->index
+            }}</textarea>
+        </div>
+        <div class="form-group">
+            <h2>About page:</h2>
+            <textarea name="about" class="tiny" cols="30" rows="10">{{ $page->about
+            }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary">
+        </div>
+
+    </form>
 @stop

@@ -2,11 +2,13 @@
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', 'AdminController@index');
+    Route::put('update/{id}', 'AdminController@update');
 
     Route::get('login', 'AdminController@getLogin');
     Route::post('login', 'AdminController@postLogin');
     Route::post('logout', 'AdminController@postLogout');
 
+    Route::get('blog', 'BlogController@blogShow');
     Route::get('post-add', 'BlogController@postAdd');
     Route::post('post-store', 'BlogController@postStore');
     Route::get('post-edit/{id}', 'BlogController@postEdit');
@@ -26,6 +28,16 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('product-edit/{id}', 'ProductController@prodEdit');
     Route::put('product-update/{id}', 'ProductController@prodUpdate');
     Route::delete('product-delete/{id}', 'ProductController@prodDelete');
+
+    Route::get('gallery', 'GalleryController@galShow');
+    Route::get('image-add', 'GalleryController@galAdd');
+    Route::post('image-store', 'GalleryController@galStore');
+    Route::delete('image-delete/{id}', 'GalleryController@galDelete');
+
+    Route::get('orders', 'OrderController@orderShow');
+    Route::put('order-done/{id}', 'OrderController@orderDone');
+
+    Route::get('contacts', 'ContactController@contactShow');
     //Auth::routes();
 });
 

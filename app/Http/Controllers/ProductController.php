@@ -30,10 +30,11 @@ class ProductController extends Controller
 
     public function prodStore(Request $request, Product $product)
     {
+        $subdir = date('d-m-Y');
         $file = $request->file('image');
         $data = $request->all();
 
-        $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . date('d-m-Y') . '/';
+        $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $subdir . '/';
 
         if (!file_exists($uploads)) {
             mkdir($uploads);
@@ -43,11 +44,11 @@ class ProductController extends Controller
             $name = substr($file->getBasename(), 0, -4);
 
             Image::make($request->file('image'))->resize(150, 150)->save($uploads . '150_150_'
-                . $name . '.' . $file->extension());
+                . $name . '.' . $file->getClientOriginalExtension());
 
 
-            $data['image'] = '/uploads/150_150_'
-                . $name . '.' . $file->extension();
+            $data['image'] = '/uploads/'.$subdir.'150_150_'
+                . $name . '.' . $file->getClientOriginalExtension();
         }
 
         if (isset($data['is_new'])) {
@@ -89,10 +90,11 @@ class ProductController extends Controller
 
     public function prodUpdate(Request $request, $id)
     {
+        $subdir = date('d-m-Y');
         $file = $request->file('image');
         $data = $request->all();
 
-        $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . date('d-m-Y') . '/';
+        $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $subdir . '/';
 
         if (!file_exists($uploads)) {
             mkdir($uploads);
@@ -102,11 +104,11 @@ class ProductController extends Controller
             $name = substr($file->getBasename(), 0, -4);
 
             Image::make($request->file('image'))->resize(150, 150)->save($uploads . '150_150_'
-                . $name . '.' . $file->extension());
+                . $name . '.' . $file->getClientOriginalExtension());
 
 
-            $data['image'] = '/uploads/150_150_'
-                . $name . '.' . $file->extension();
+            $data['image'] = '/uploads/'.$subdir.'150_150_'
+                . $name . '.' . $file->getClientOriginalExtension();
         }
 
         if (isset($data['is_new'])) {
