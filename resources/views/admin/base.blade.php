@@ -32,7 +32,9 @@
             toolbar: "image",
             plugins: "image imagetools",
             imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
-            image_advtab: true
+            image_advtab: true,
+            language: 'ru',
+
         });
     </script>
 
