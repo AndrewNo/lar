@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -47,7 +48,7 @@ class ProductController extends Controller
                 . $name . '.' . $file->getClientOriginalExtension());
 
 
-            $data['image'] = '/uploads/'.$subdir.'150_150_'
+            $data['image'] = '/uploads/' . $subdir . '/150_150_'
                 . $name . '.' . $file->getClientOriginalExtension();
         }
 
@@ -107,7 +108,7 @@ class ProductController extends Controller
                 . $name . '.' . $file->getClientOriginalExtension());
 
 
-            $data['image'] = '/uploads/'.$subdir.'150_150_'
+            $data['image'] = '/uploads/' . $subdir . '/150_150_'
                 . $name . '.' . $file->getClientOriginalExtension();
         }
 
@@ -139,10 +140,33 @@ class ProductController extends Controller
 
     public function prodDelete($id)
     {
-        $product =Product::find($id);
+        $product = Product::find($id);
 
         $product->delete();
 
         return redirect('/admin/shop');
+    }
+
+    public function indexShow()
+    {
+        $products = DB::table('products')
+            ->where('is_active', '=', 1)
+            ->orderBy('position', 'asc')
+            ->get();
+
+        $categories = DB::table('categories')
+            ->orderBy('position', 'asc')
+            ->get();
+
+        return view('index.shop', ['products' => $products, 'categories' => $categories]);
+    }
+
+    public function byCategoryShow(Category $category, $alias){
+        //$category = Category::all()->where('alias', '=', $alias);
+            $category->product()->where('alias', '=', $alias);
+        $category->getConnection();
+        dd($category);
+        //$products = Product::all()->where('category_id', '=', $category['id']);
+
     }
 }

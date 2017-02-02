@@ -9,6 +9,9 @@
                 <td>Title</td>
                 <td>Image</td>
                 <td>Description</td>
+                <td>Active</td>
+                <td>new</td>
+                <td>Position</td>
                 <td>Action</td>
                 <td>Action</td>
             </tr>
@@ -20,6 +23,16 @@
                     <td>{{ $product->title  }}</td>
                     <td><img src="{{$product->image}} " alt=""></td>
                     <td>{{ $product->descr }}</td>
+                    @if($product->is_active)
+                        <td>+</td>
+                    @else
+                        <td>-</td>
+                    @endif
+                    @if($product->is_new)
+                        <td>+</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td><a href="/admin/product-edit/{{ $product->id }}">Edit</a></td>
                     <td>
                         <form action="/admin/product-delete/{{ $product->id }}" method="post">

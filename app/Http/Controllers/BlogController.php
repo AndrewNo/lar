@@ -37,7 +37,7 @@ class BlogController extends Controller
         $blog->is_active = $data['is_active'];
         $blog->save();
 
-        return redirect('/admin/');
+        return redirect('/admin/blog');
     }
 
     public function postEdit($id)
@@ -74,5 +74,19 @@ class BlogController extends Controller
         $post->delete();
 
         return redirect('/admin/');
+    }
+
+    public function indexShow()
+    {
+        $posts = Blog::all()->where('is_active', '=', 1);
+
+        return view('index.blog', ['posts' => $posts]);
+    }
+
+    public function indexPostShow($id)
+    {
+        $post = Blog::find($id);
+
+        return view('index.post', ['post' => $post]);
     }
 }

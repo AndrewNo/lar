@@ -8,6 +8,7 @@
                 <td>Id</td>
                 <td>Title</td>
                 <td>Alias</td>
+                <td>Position</td>
                 <td>Action</td>
                 <td>Action</td>
             </tr>
@@ -18,6 +19,7 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title  }}</td>
                     <td>{{ $category->alias }}</td>
+                    <td>{{ $category->position }}</td>
                     <td><a href="/admin/category-edit/{{ $category->id }}">Edit</a></td>
                     <td>
                         <form action="/admin/category-delete/{{ $category->id }}" method="post">

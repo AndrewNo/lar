@@ -41,3 +41,15 @@ Route::group(['prefix' => 'admin'], function (){
     //Auth::routes();
 });
 
+Route::get('/', 'PageController@index');
+
+Route::get('blog', 'BlogController@indexShow');
+Route::get('blog/{id}', 'BlogController@indexPostShow');
+
+Route::get('about', 'PageController@about');
+
+Route::get('contacts', 'ContactController@indexShow');
+Route::post('contact/store', 'ContactController@indexContactStore');
+
+Route::get('shop', 'ProductController@indexShow');
+Route::get('shop/{alias}', 'ProductController@byCategoryShow');
