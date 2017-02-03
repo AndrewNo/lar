@@ -52,4 +52,9 @@ Route::get('contacts', 'ContactController@indexShow');
 Route::post('contact/store', 'ContactController@indexContactStore');
 
 Route::get('shop', 'ProductController@indexShow');
-Route::get('shop/{alias}', 'ProductController@byCategoryShow');
+Route::get('shop/category/{alias}', 'ProductController@byCategoryShow');
+Route::get('shop/{id}', 'ProductController@indexProductShow');
+Route::post('shop/order-store', 'OrderController@indexOrderStore');
+
+Route::get('gallery', 'GalleryController@indexShow');
+

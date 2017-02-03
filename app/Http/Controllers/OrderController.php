@@ -24,4 +24,20 @@ class OrderController extends Controller
 
         return redirect('/admin/orders');
     }
+
+    public function indexOrderStore(Request $request, Order $order)
+    {
+       $data = $request->all();
+
+       $order->product_id = $data['product_id'];
+       $order->name = $data['name'];
+       $order->phone = $data['phone'];
+       $order->email = $data['email'];
+       $order->city = $data['city'];
+       $order->comment = $data['comment'];
+
+       $order->save();
+
+       return back();
+    }
 }

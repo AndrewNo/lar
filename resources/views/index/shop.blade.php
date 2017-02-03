@@ -5,7 +5,7 @@
         <nav>
             <ul class="nav nav-pills">
                 @foreach($categories as $category)
-                    <li><a href="/shop/{{ $category->alias }}">{{ $category->title }}</a></li>
+                    <li><a href="/shop/category/{{ $category->alias }}">{{ $category->title }}</a></li>
                 @endforeach
             </ul>
         </nav>

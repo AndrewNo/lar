@@ -161,12 +161,20 @@ class ProductController extends Controller
         return view('index.shop', ['products' => $products, 'categories' => $categories]);
     }
 
-    public function byCategoryShow(Category $category, $alias){
+    public function byCategoryShow(Category $category, $alias)
+    {
         //$category = Category::all()->where('alias', '=', $alias);
-            $category->product()->where('alias', '=', $alias);
+        $category->product()->where('alias', '=', $alias);
         $category->getConnection();
         dd($category);
         //$products = Product::all()->where('category_id', '=', $category['id']);
 
+    }
+
+    public function indexProductShow($id)
+    {
+        $product = Product::find($id);
+
+        return view('index.product', ['product' => $product]);
     }
 }

@@ -24,7 +24,7 @@ class GalleryController extends Controller
     {
 
         $subdir = date('d-m-Y');
-        $uploads =  $_SERVER['DOCUMENT_ROOT'] . "/uploads/gallery/" . $subdir . '/';
+        $uploads = $_SERVER['DOCUMENT_ROOT'] . "/uploads/gallery/" . $subdir . '/';
 
 
         if (!file_exists($uploads)) {
@@ -39,10 +39,10 @@ class GalleryController extends Controller
 
                 $name = substr($photo['image']->getBasename(), 0, -4);
 
-                Image::make($photo['image'])->save($uploads .$name . '.' .
+                Image::make($photo['image'])->save($uploads . $name . '.' .
                     $photo['image']->getClientOriginalExtension());
 
-                $gallery->image = '/uploads/gallery/' . $subdir. '/'. $name . '.' .
+                $gallery->image = '/uploads/gallery/' . $subdir . '/' . $name . '.' .
                     $photo['image']->getClientOriginalExtension();
 
                 $gallery->save();
@@ -63,5 +63,12 @@ class GalleryController extends Controller
         $photo->delete();
 
         return redirect('/admin/gallery');
+    }
+
+    public function indexShow()
+    {
+        $images = Gallery::all();
+
+        return view('index.gallery', ['images' => $images]);
     }
 }
