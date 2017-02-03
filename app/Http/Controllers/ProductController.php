@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,26 +32,12 @@ class ProductController extends Controller
 
     public function prodStore(Request $request, Product $product)
     {
+
         $subdir = date('d-m-Y');
-        $file = $request->file('image');
+        $file_data = $request->file('image');
         $data = $request->all();
 
         $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $subdir . '/';
-
-        if (!file_exists($uploads)) {
-            mkdir($uploads);
-        }
-
-        if (!empty($request->file())) {
-            $name = substr($file->getBasename(), 0, -4);
-
-            Image::make($request->file('image'))->resize(150, 150)->save($uploads . '150_150_'
-                . $name . '.' . $file->getClientOriginalExtension());
-
-
-            $data['image'] = '/uploads/' . $subdir . '/150_150_'
-                . $name . '.' . $file->getClientOriginalExtension();
-        }
 
         if (isset($data['is_new'])) {
             $data['is_new'] = 1;
@@ -69,10 +56,51 @@ class ProductController extends Controller
         $product->category_id = $data['category_id'];
         $product->is_active = $data['is_active'];
         $product->position = $data['position'];
-        $product->image = $data['image'];
         $product->is_new = $data['is_new'];
 
         $product->save();
+
+
+        if (!file_exists($uploads)) {
+            mkdir($uploads);
+        }
+
+        if (!empty($request->file('image'))) {
+
+            $file = new File();
+            $name = substr($file_data->getBasename(), 0, -4);
+
+            Image::make($request->file('image'))->save($uploads . $name . '.' . $file_data->getClientOriginalExtension());
+
+            $file->product_id = $product->id;
+            $file->type = 'main';
+            $file->image = '/uploads/' . $subdir .'/' .  $name . '.' . $file_data->getClientOriginalExtension();
+
+            $file->save();
+        }
+
+        if (!empty($request->file('add_photo'))) {
+            foreach ($request->file('add_photo') as $photo['image']) {
+
+
+                $file = new File();
+                $name = substr($photo['image']->getBasename(), 0, -4);
+
+                Image::make($photo['image'])->save($uploads . $name . '.' .
+                    $photo['image']->getClientOriginalExtension());
+
+                $file->product_id = $product->id;
+                $file->type = 'cover';
+                $file->image = '/uploads/' . $subdir . '/' . $name . '.' .
+                    $photo['image']->getClientOriginalExtension();
+
+                $file->save();
+
+            }
+
+        }
+
+
 
         return redirect('/admin/shop');
 
@@ -83,34 +111,24 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $main_pic = File::all()->where('product_id', '=', $id)->where('type', '=', 'main');
+
+        $cover =File::all()->where('product_id', '=', $id)->where('type', '=', 'cover');
+
         $categories = Category::all();
 
 
-        return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
+        return view('admin.product.edit', ['product' => $product, 'categories' => $categories, 'main_pic' =>
+            $main_pic, 'cover' => $cover]);
     }
 
     public function prodUpdate(Request $request, $id)
     {
         $subdir = date('d-m-Y');
-        $file = $request->file('image');
+        $file_data = $request->file('image');
         $data = $request->all();
 
         $uploads = $root = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $subdir . '/';
-
-        if (!file_exists($uploads)) {
-            mkdir($uploads);
-        }
-
-        if (!empty($request->file())) {
-            $name = substr($file->getBasename(), 0, -4);
-
-            Image::make($request->file('image'))->resize(150, 150)->save($uploads . '150_150_'
-                . $name . '.' . $file->getClientOriginalExtension());
-
-
-            $data['image'] = '/uploads/' . $subdir . '/150_150_'
-                . $name . '.' . $file->getClientOriginalExtension();
-        }
 
         if (isset($data['is_new'])) {
             $data['is_new'] = 1;
@@ -123,17 +141,61 @@ class ProductController extends Controller
         } else {
             $data['is_active'] = 0;
         }
-        $product = Product::find($id);
+        $product =Product::find($id);
 
         $product->title = $data['title'];
         $product->descr = $data['descr'];
         $product->category_id = $data['category_id'];
         $product->is_active = $data['is_active'];
         $product->position = $data['position'];
-        isset($data['image']) ? $product->image = $data['image'] : false;
         $product->is_new = $data['is_new'];
 
         $product->save();
+
+
+        if (!file_exists($uploads)) {
+            mkdir($uploads);
+        }
+
+        if (!empty($request->file('image'))) {
+
+            if (isset($data['main_id'])){
+                $file = File::find($data['main_id']);
+            } else {
+                $file = new File();
+            }
+
+            $name = substr($file_data->getBasename(), 0, -4);
+
+            Image::make($request->file('image'))->save($uploads . $name . '.' . $file_data->getClientOriginalExtension());
+
+            $file->product_id = $id;
+            $file->type = 'main';
+            $file->image = '/uploads/' . $subdir .'/' . $name . '.' . $file_data->getClientOriginalExtension();
+
+            $file->save();
+        }
+
+        if (!empty($request->file('add_photo'))) {
+            foreach ($request->file('add_photo') as $photo['image']) {
+
+
+                $file = new File();
+                $name = substr($photo['image']->getBasename(), 0, -4);
+
+                Image::make($photo['image'])->save($uploads . $name . '.' .
+                    $photo['image']->getClientOriginalExtension());
+
+                $file->product_id = $id;
+                $file->type = 'cover';
+                $file->image = '/uploads/' . $subdir . '/' . $name . '.' .
+                    $photo['image']->getClientOriginalExtension();
+
+                $file->save();
+
+            }
+
+        }
 
         return redirect('/admin/shop');
     }
@@ -149,20 +211,16 @@ class ProductController extends Controller
 
     public function indexShow()
     {
-        $products = DB::table('products')
-            ->where('is_active', '=', 1)
-            ->orderBy('position', 'asc')
-            ->get();
+        $products = Product::active()->orderBy('position', 'asc')->get();
 
-        $categories = DB::table('categories')
-            ->orderBy('position', 'asc')
-            ->get();
+        $categories = Category::orderBy('position', 'asc')->get();
 
         return view('index.shop', ['products' => $products, 'categories' => $categories]);
     }
 
-    public function byCategoryShow(Category $category, $alias)
+    public function byCategoryShow($alias)
     {
+
         //$category = Category::all()->where('alias', '=', $alias);
         $category->product()->where('alias', '=', $alias);
         $category->getConnection();

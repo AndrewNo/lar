@@ -25,9 +25,17 @@
             </select>
         </div>
         <div class="form-group">
-            <img src="{{ $product->image }}" alt="">
+
             <label for="image" class="control-label">Image:</label>
+            @foreach($main_pic as $item)
+                <img src="{{ $item->image }}" alt="" width="250">
+                <input type="hidden" name="main_id" value="{{ $item->id }}">
+            @endforeach
             <input type="file" name="image" id="image" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="add_photo" class="control-label">You can upload 10 photos:</label>
+            <input name='add_photo[]' id="add_photo" type='file' multiple='true' min='1' max='10' class="form-control"/>
         </div>
         <div class="form-group">
             <label for="is_new" class="control-label">Is new:</label>
@@ -47,4 +55,14 @@
             <input type="submit" value="Save" class="btn btn-primary">
         </div>
     </form>
+    <p>Additional images:</p>
+    @foreach($cover as $item)
+        <form action="/admin/img-delete/{{ $item->id }}" method="post">
+            <img src="{{ $item->image }}" alt="" width="150">
+            {{ csrf_field() }}
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn-danger btn-sm">Delete</button>
+        </form>
+        <hr>
+    @endforeach
 @stop

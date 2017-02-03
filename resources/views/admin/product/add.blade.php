@@ -21,8 +21,12 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="image" class="control-label">Image:</label>
+            <label for="image" class="control-label">Main Image:</label>
             <input type="file" name="image" id="image" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="add_photo" class="control-label">You can upload 10 photos:</label>
+            <input name='add_photo[]' id="add_photo" type='file' multiple='true' min='1' max='10' class="form-control"/>
         </div>
         <div class="form-group">
             <label for="is_new" class="control-label">Is new:</label>

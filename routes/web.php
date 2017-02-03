@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin'], function (){
     Route::put('order-done/{id}', 'OrderController@orderDone');
 
     Route::get('contacts', 'ContactController@contactShow');
+
+    Route::delete('img-delete/{id}', 'FileController@deleteImg');
     //Auth::routes();
 });
 
