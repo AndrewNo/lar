@@ -39,12 +39,12 @@
         <h3 class="text-muted">My site</h3>
         <nav>
             <ul class="nav nav-justified">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/shop">Shop</a></li>
-                <li><a href="/gallery">Gallery</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contacts">Contact</a></li>
+                <li class=" @if(URL::current() == url('/')) active @endif "><a href="/">Home</a></li>
+                <li class=" @if(URL::current() == url('/shop')) active @endif "><a href="/shop">Shop</a></li>
+                <li class=" @if(URL::current() == url('/gallery')) active @endif "><a href="/gallery">Gallery</a></li>
+                <li class=" @if(URL::current() == url('/blog')) active @endif "><a href="/blog">Blog</a></li>
+                <li class=" @if(URL::current() == url('/about')) active @endif "><a href="/about">About</a></li>
+                <li class=" @if(URL::current() == url('/contacts')) active @endif "><a href="/contacts">Contact</a></li>
             </ul>
         </nav>
     </div>

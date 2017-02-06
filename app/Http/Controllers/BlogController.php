@@ -64,7 +64,7 @@ class BlogController extends Controller
         $post->is_active = $data['is_active'];
         $post->save();
 
-        return redirect('/admin/');
+        return redirect('/admin/blog');
     }
 
     public function postDelete($id)

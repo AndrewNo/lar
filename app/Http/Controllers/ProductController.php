@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -221,11 +220,13 @@ class ProductController extends Controller
     public function byCategoryShow($alias)
     {
 
-        //$category = Category::all()->where('alias', '=', $alias);
-        $category->product()->where('alias', '=', $alias);
-        $category->getConnection();
-        dd($category);
-        //$products = Product::all()->where('category_id', '=', $category['id']);
+        $category = Category::where('alias', '=', $alias)->get()->toArray();
+
+        $products = Product::where('category_id', '=', $category[0]['id'])->get();
+
+        $categories = Category::all();
+
+        return view('index.category_products', ['products' => $products, 'categories'=>$categories]);
 
     }
 

@@ -30,47 +30,23 @@
         tinymce.init({
             selector: '.tiny',
             language: 'ru',
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste jbimages"
+            ],
 
-            plugins: 'image code',
-            toolbar: 'undo redo | link image | code',
-            // enable title field in the Image dialog
-            image_title: true,
-            // enable automatic uploads of images represented by blob or data URIs
-            automatic_uploads: true,
-            // URL of our upload handler (for more details check: https://www.tinymce.com/docs/configure/file-image-upload/#images_upload_url)
-            images_upload_url: 'postAcceptor.php',
-            // here we add custom filepicker only to Image dialog
-            file_picker_types: 'image',
-            // and here's our custom image picker
-            file_picker_callback: function(cb, value, meta) {
-                var input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
+            // ===========================================
+            // PUT PLUGIN'S BUTTON on the toolbar
+            // ===========================================
 
-                // Note: In modern browsers input[type="file"] is functional without
-                // even adding it to the DOM, but that might not be the case in some older
-                // or quirky browsers like IE, so you might want to add it to the DOM
-                // just in case, and visually hide it. And do not forget do remove it
-                // once you do not need it anymore.
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages",
 
-                input.onchange = function() {
-                    var file = this.files[0];
+            // ===========================================
+            // SET RELATIVE_URLS to FALSE (This is required for images to display properly)
+            // ===========================================
 
-                    // Note: Now we need to register the blob in TinyMCEs image blob
-                    // registry. In the next release this part hopefully won't be
-                    // necessary, as we are looking to handle it internally.
-                    var id = 'blobid' + (new Date()).getTime();
-                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    var blobInfo = blobCache.create(id, file);
-                    blobCache.add(blobInfo);
-
-                    // call the callback and populate the Title field with the file name
-                    cb(blobInfo.blobUri(), { title: file.name });
-                };
-
-                input.click();
-            }
-
+            relative_urls: false
         });
     </script>
 
@@ -93,12 +69,12 @@
         @if(Auth::check())
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/admin/blog">Blog</a></li>
-                <li><a href="/admin/categories">Categories</a></li>
-                <li><a href="/admin/shop">Shop</a></li>
-                <li><a href="/admin/gallery">Gallery</a></li>
-                <li><a href="/admin/orders">Orders</a></li>
-                <li><a href="/admin/contacts">Contact</a></li>
+                <li class=" @if(URL::current() == url('/admin/blog')) active @endif "><a href="/admin/blog">Blog</a></li>
+                <li class=" @if(URL::current() == url('/admin/categories')) active @endif "><a href="/admin/categories">Categories</a></li>
+                <li class=" @if(URL::current() == url('/admin/shop')) active @endif "><a href="/admin/shop">Shop</a></li>
+                <li class=" @if(URL::current() == url('/admin/gallery')) active @endif "><a href="/admin/gallery">Gallery</a></li>
+                <li class=" @if(URL::current() == url('/admin/orders')) active @endif "><a href="/admin/orders">Orders</a></li>
+                <li class=" @if(URL::current() == url('/admin/contacts')) active @endif "><a href="/admin/contacts">Contact</a></li>
 
                 <li>
                     <form action="admin/logout" method="post">
