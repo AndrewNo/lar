@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     public function orderShow()
     {
-        $orders = Order::all()->where('is_done', '=', 0);
+        $orders = Order::where('is_done', '=', 0)->get();
 
         return view('admin.order.show', ['orders' => $orders]);
     }
@@ -27,17 +27,24 @@ class OrderController extends Controller
 
     public function indexOrderStore(Request $request, Order $order)
     {
-       $data = $request->all();
+        $data = $request->all();
 
-       $order->product_id = $data['product_id'];
-       $order->name = $data['name'];
-       $order->phone = $data['phone'];
-       $order->email = $data['email'];
-       $order->city = $data['city'];
-       $order->comment = $data['comment'];
+        $order->product_id = $data['product_id'];
+        $order->name = $data['name'];
+        $order->phone = $data['phone'];
+        $order->email = $data['email'];
+        $order->city = $data['city'];
+        $order->comment = $data['comment'];
 
-       $order->save();
+        $order->save();
 
-       return back();
+        return back();
+    }
+
+    public function archiveShow()
+    {
+        $orders = Order::where('is_done', '=', 1)->get();
+
+        return view('admin.order.archive', ['orders' => $orders]);
     }
 }

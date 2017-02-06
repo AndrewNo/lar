@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     public function blogShow()
     {
-        $posts = Blog::all();
+        $posts = Blog::where('is_active', '=', 1)->get();
         return view('admin.blog.show', ['posts' => $posts]);
     }
 
@@ -88,5 +88,11 @@ class BlogController extends Controller
         $post = Blog::find($id);
 
         return view('index.post', ['post' => $post]);
+    }
+
+    public function postDrafts()
+    {
+        $posts = Blog::where('is_active', '=', 0)->get();
+        return view('admin.blog.draft', ['posts' => $posts]);
     }
 }

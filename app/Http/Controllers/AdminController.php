@@ -9,22 +9,17 @@ use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        // $this->middleware(['auth'])->except(['logout', 'login']);
-    }
+
+
 
     public function index()
     {
-        if (!\Auth::check()) {
-            return redirect('admin/login');
-        }
-
         $page = Page::find(1);
         return view('admin.tpls.index', ['page' => $page]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $data = $request->all();
 
         $page = Page::find($id);
@@ -64,6 +59,6 @@ class AdminController extends Controller
     {
         \Auth::logout();
 
-        return redirect('/admin/');
+        return redirect('/admin/login');
     }
 }

@@ -23,7 +23,7 @@
                     <td>{{ $product->title  }}</td>
                     @foreach($product->images as $image)
                         @if($image->type == 'main')
-                    <td><img src="{{$image->image}} " alt="" width="150"></td>
+                            <td><img src="{{$image->image}} " alt="" width="150"></td>
                         @endif
                     @endforeach
                     <td>{{ $product->descr }}</td>
@@ -33,6 +33,7 @@
                     @else
                         <td>-</td>
                     @endif
+
                     <td>{{ $product->position }}</td>
                     <td><a href="/admin/product-edit/{{ $product->id }}">Edit</a></td>
                     <td>
@@ -43,13 +44,14 @@
                         </form>
                     </td>
                 </tr>
+
             @endforeach
+
             </tbody>
         </table>
     </div>
     <div class="page-header">
-        <a href="/admin/product-add" class="btn btn-primary">New product</a>
-        <a href="/admin/product/store" class="btn btn-primary">Store</a>
+        <a href="/admin/shop" class="btn btn-primary">Back</a>
     </div>
 
 @stop

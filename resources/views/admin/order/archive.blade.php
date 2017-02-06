@@ -12,7 +12,6 @@
                 <td>City</td>
                 <td>Comment</td>
                 <td>Date</td>
-                <td>Action</td>
             </tr>
             </thead>
             <tbody>
@@ -25,39 +24,32 @@
                     <td>{{ $order->city }}</td>
                     <td>{{ $order->comment }}</td>
                     <td>{{ $order->created_at }}</td>
-                    <td>
-                        <form action="/admin/order-done/{{ $order->id }}" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="put">
-                            <button type="submit" class="btn btn-group-sm btn-primary">Done</button>
-                        </form>
-                    </td>
                     <td><a href="#" class="btn btn-info my_show">Show Details</a>
                         <div class="product">
 
 
-                        <table class="table table-striped" >
-                            <thead>
-                            <tr>
-                                <td>Id</td>
-                                <td>Product</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{ $order->product['id'] }}</td>
-                                <td>{{ $order->product['title'] }}</td>
-                                <td><a href="#" class="btn btn-info my_hide">Hide</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <table class="table table-striped" >
+                                <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Product</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{ $order->product['id'] }}</td>
+                                    <td>{{ $order->product['title'] }}</td>
+                                    <td><a href="#" class="btn btn-info my_hide">Hide</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-        <a href="/admin/order/arch" class="btn btn-primary">Archive of orders</a>
+        <a href="/admin/orders" class="btn btn-primary">Back</a>
     </div>
 
     <script>

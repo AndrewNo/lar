@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function prodShow()
     {
-        $products = Product::all();
+        $products = Product::where('is_active', '=', 1)->get();
 
 
         return view('admin.product.show', ['products' => $products]);
@@ -73,7 +73,7 @@ class ProductController extends Controller
 
             $file->product_id = $product->id;
             $file->type = 'main';
-            $file->image = '/uploads/' . $subdir .'/' .  $name . '.' . $file_data->getClientOriginalExtension();
+            $file->image = '/uploads/' . $subdir . '/' . $name . '.' . $file_data->getClientOriginalExtension();
 
             $file->save();
         }
@@ -100,7 +100,6 @@ class ProductController extends Controller
         }
 
 
-
         return redirect('/admin/shop');
 
 
@@ -112,7 +111,7 @@ class ProductController extends Controller
 
         $main_pic = File::all()->where('product_id', '=', $id)->where('type', '=', 'main');
 
-        $cover =File::all()->where('product_id', '=', $id)->where('type', '=', 'cover');
+        $cover = File::all()->where('product_id', '=', $id)->where('type', '=', 'cover');
 
         $categories = Category::all();
 
@@ -140,7 +139,7 @@ class ProductController extends Controller
         } else {
             $data['is_active'] = 0;
         }
-        $product =Product::find($id);
+        $product = Product::find($id);
 
         $product->title = $data['title'];
         $product->descr = $data['descr'];
@@ -158,7 +157,7 @@ class ProductController extends Controller
 
         if (!empty($request->file('image'))) {
 
-            if (isset($data['main_id'])){
+            if (isset($data['main_id'])) {
                 $file = File::find($data['main_id']);
             } else {
                 $file = new File();
@@ -170,7 +169,7 @@ class ProductController extends Controller
 
             $file->product_id = $id;
             $file->type = 'main';
-            $file->image = '/uploads/' . $subdir .'/' . $name . '.' . $file_data->getClientOriginalExtension();
+            $file->image = '/uploads/' . $subdir . '/' . $name . '.' . $file_data->getClientOriginalExtension();
 
             $file->save();
         }
@@ -226,7 +225,7 @@ class ProductController extends Controller
 
         $categories = Category::all();
 
-        return view('index.category_products', ['products' => $products, 'categories'=>$categories]);
+        return view('index.category_products', ['products' => $products, 'categories' => $categories]);
 
     }
 
@@ -235,5 +234,13 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return view('index.product', ['product' => $product]);
+    }
+
+    public function prodInStore()
+    {
+        $products = Product::where('is_active', '=', 0)->get();
+
+
+        return view('admin.product.store', ['products' => $products]);
     }
 }

@@ -34,7 +34,6 @@
         </table>
     </div>
     <div class="page-header">
-        <a href="/admin/post-add" class="btn btn-primary">New post</a>
-        <a href="/admin/post/drafts" class="btn btn-primary">Drafts</a>
+        <a href="/admin/blog" class="btn btn-primary">Back</a>
     </div>
 @stop
