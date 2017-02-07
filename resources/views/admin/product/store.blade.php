@@ -53,5 +53,12 @@
     <div class="page-header">
         <a href="/admin/shop" class="btn btn-primary">Back</a>
     </div>
+    <script>
+        $('.btn-danger').on('click', function (e) {
+            if (!confirm('Are you delete this?')){
+                e.preventDefault();
+            }
 
+        });
+    </script>
 @stop

@@ -62,6 +62,13 @@ text-align: center; padding-top: 50px; font-size: 20px;">
             setTimeout(function () {
                 $('.alert-info').hide('slow')
             }, 3000);
+
+            $('.btn-danger').on('click', function (e) {
+                if (!confirm('Are you delete this?')){
+                    e.preventDefault();
+                }
+
+            });
         });
     </script>
 @stop
