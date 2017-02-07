@@ -16,9 +16,6 @@ class CategoryController extends Controller
 
     public function catAdd()
     {
-        if (!\Auth::check()) {
-            return redirect('admin/');
-        }
 
         return view('admin.category.add');
     }
@@ -33,7 +30,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/admin/categories');
+        return redirect('/admin/categories')->with('message', 'Category '.$category->title. ' was added!');
     }
 
     public function catEdit($id)
@@ -55,7 +52,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/admin/categories');
+        return redirect('/admin/categories')->with('message', 'Category '.$category->title. ' was edited!');
     }
 
     public function catDelete($id)

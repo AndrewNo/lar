@@ -20,9 +20,6 @@ class ProductController extends Controller
 
     public function prodAdd()
     {
-        if (!\Auth::check()) {
-            return redirect('admin/');
-        }
 
         $categories = Category::all();
 
@@ -99,8 +96,13 @@ class ProductController extends Controller
 
         }
 
+        if ($product->is_active == 1) {
+            $message = 'Product '.$product->title. ' was added and available';
+        }else {
+            $message = 'Product '.$product->title. ' was added and stored';
+        }
 
-        return redirect('/admin/shop');
+        return redirect('/admin/shop')->with('message', $message);
 
 
     }
@@ -195,7 +197,13 @@ class ProductController extends Controller
 
         }
 
-        return redirect('/admin/shop');
+        if ($product->is_active == 1) {
+            $message = 'Product '.$product->title. ' was added and available';
+        }else {
+            $message = 'Product '.$product->title. ' was added and stored';
+        }
+
+        return redirect('/admin/shop')->with('message', $message);
     }
 
     public function prodDelete($id)

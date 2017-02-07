@@ -37,7 +37,13 @@ class BlogController extends Controller
         $blog->is_active = $data['is_active'];
         $blog->save();
 
-        return redirect('/admin/blog');
+        if ($blog->is_active == 1) {
+            $message = 'Post '.$blog->title. ' was added and published';
+        }else {
+            $message = 'Post '.$blog->title. ' was added and saved in drafts';
+        }
+
+        return redirect('/admin/blog')->with('message', $message);
     }
 
     public function postEdit($id)
@@ -64,7 +70,7 @@ class BlogController extends Controller
         $post->is_active = $data['is_active'];
         $post->save();
 
-        return redirect('/admin/blog');
+        return redirect('/admin/blog')->with('message', 'Post '.$post->title.' saved');
     }
 
     public function postDelete($id)

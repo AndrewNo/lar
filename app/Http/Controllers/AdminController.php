@@ -29,7 +29,7 @@ class AdminController extends Controller
 
         $page->save();
 
-        return redirect('/admin/');
+        return redirect('/admin/')->with('message', 'Changes is saved');
     }
 
     public function getLogin()

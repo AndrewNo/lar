@@ -51,7 +51,7 @@ class GalleryController extends Controller
 
         }
 
-        return redirect('/admin/gallery');
+        return redirect('/admin/gallery')->with('message', 'Image was added');
     }
 
     public function galDelete($id)

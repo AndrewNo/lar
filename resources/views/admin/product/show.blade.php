@@ -1,6 +1,12 @@
 @extends('admin.base')
 
 @section('content')
+    @if(Session::has('message'))
+        <div class="alert-info" style="width: 500px; height: 150px; margin: 0 auto;
+text-align: center; padding-top: 50px; font-size: 20px;">
+            <p>{{ Session::get('message') }}</p>
+        </div>
+    @endif
     <div class="page-header">
         <table class="table table-striped">
             <thead>
@@ -51,5 +57,11 @@
         <a href="/admin/product-add" class="btn btn-primary">New product</a>
         <a href="/admin/product/store" class="btn btn-primary">Store</a>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('.alert-info').hide('slow')
+            }, 3000);
+        });
+    </script>
 @stop

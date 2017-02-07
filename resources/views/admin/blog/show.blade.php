@@ -1,7 +1,12 @@
 @extends('admin.base')
 
 @section('content')
-
+    @if(Session::has('message'))
+        <div class="alert-info" style="width: 500px; height: 150px; margin: 0 auto;
+text-align: center; padding-top: 50px; font-size: 20px;">
+            <p>{{ Session::get('message') }}</p>
+        </div>
+    @endif
     <div class="page-header">
         <table class="table table-striped">
             <thead>
@@ -37,4 +42,11 @@
         <a href="/admin/post-add" class="btn btn-primary">New post</a>
         <a href="/admin/post/drafts" class="btn btn-primary">Drafts</a>
     </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('.alert-info').hide('slow')
+            }, 3000);
+        });
+    </script>
 @stop
