@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function prodShow()
     {
-        $products = Product::where('is_active', '=', 1)->get();
+        $products = Product::active()->get();
 
 
         return view('admin.product.show', ['products' => $products]);
@@ -221,7 +221,7 @@ class ProductController extends Controller
 
         $category = Category::where('alias', '=', $alias)->get()->toArray();
 
-        $products = Product::where('category_id', '=', $category[0]['id'])->get();
+        $products = Product::active()->where('category_id', '=', $category[0]['id'])->orderBy('position', 'asc')->get();
 
         $categories = Category::all();
 

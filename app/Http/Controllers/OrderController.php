@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\Mail\OrderShipped;
 use App\Models\Order;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -37,6 +40,16 @@ class OrderController extends Controller
         $order->comment = $data['comment'];
 
         $order->save();
+
+
+        //mail/order to owner of site
+        Mail::send('email.order', ['order' => $order], function ($m){
+            $m->from('andrewenot@gmail.com', 'Your site');
+            $m->to('andrewenot@gmail.com')->subject('New Order');
+        });
+
+        //mail/order to user
+        Mail::to($order->email)->send(new OrderShipped($order));
 
         return back();
     }

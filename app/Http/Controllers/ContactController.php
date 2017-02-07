@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactShipped;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,8 @@ class ContactController extends Controller
         $contact->comment = $data['comment'];
 
         $contact->save();
+
+        \Mail::to('andrewenot@gmail.com')->send(new ContactShipped($contact));
 
         return back();
     }
