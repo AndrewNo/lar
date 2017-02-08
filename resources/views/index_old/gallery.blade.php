@@ -1,7 +1,7 @@
 @extends('index.base')
 @section('content')
 
-    <div class="content">
+    <div class="row">
 
             @foreach($images as $image)
 

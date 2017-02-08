@@ -1,5 +1,8 @@
 @extends('index.base')
 
 @section('content')
-    {!! $about->about !!}
+    <div class="content">
+        {!! $about->about !!}
+    </div>
+
 @stop

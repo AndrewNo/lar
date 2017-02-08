@@ -1,7 +1,7 @@
 @extends('index.base')
 
 @section('content')
-    <div class="content">
+    <div class="row">
         <div class="jumbotron">
             <p>Send me message:</p>
         </div>

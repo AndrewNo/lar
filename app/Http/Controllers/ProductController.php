@@ -231,7 +231,7 @@ class ProductController extends Controller
 
         $products = Product::active()->where('category_id', '=', $category[0]['id'])->orderBy('position', 'asc')->get();
 
-        $categories = Category::all();
+        $categories = Category::orderBy('position', 'asc')->get();
 
         return view('index.category_products', ['products' => $products, 'categories' => $categories]);
 
@@ -241,7 +241,9 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('index.product', ['product' => $product]);
+        $categories = Category::orderBy('position', 'asc')->get();
+
+        return view('index.product', ['product' => $product, 'categories' => $categories]);
     }
 
     public function prodInStore()
