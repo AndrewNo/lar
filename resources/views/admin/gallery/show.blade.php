@@ -12,8 +12,8 @@ text-align: center; padding-top: 50px; font-size: 20px;">
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Image</td>
-                <td>Action</td>
+                <td>Изображение</td>
+                <td>Действие</td>
             </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@ text-align: center; padding-top: 50px; font-size: 20px;">
                         <form action="/admin/image-delete/{{ $image->id }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-group-sm btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-group-sm btn-danger del">Удалить</button>
                         </form>
                     </td>
                 </tr>
@@ -36,7 +36,7 @@ text-align: center; padding-top: 50px; font-size: 20px;">
         </table>
     </div>
     <div class="page-header">
-        <a href="/admin/image-add" class="btn btn-primary">New image</a>
+        <a href="/admin/image-add" class="btn btn-primary ">Добавить изображение</a>
     </div>
     <script>
         $(document).ready(function () {
@@ -44,8 +44,8 @@ text-align: center; padding-top: 50px; font-size: 20px;">
                 $('.alert-info').hide('slow')
             }, 3000);
 
-            $('.btn-danger').on('click', function (e) {
-               if (!confirm('Are you delete this?')){
+            $('.del').on('click', function (e) {
+               if (!confirm('Вы уверены, что хотите удалить это изображение?')){
                    e.preventDefault();
                }
 

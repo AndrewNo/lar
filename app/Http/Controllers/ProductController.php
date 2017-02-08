@@ -97,9 +97,9 @@ class ProductController extends Controller
         }
 
         if ($product->is_active == 1) {
-            $message = 'Product '.$product->title. ' was added and available';
+            $message = 'Изделие '.$product->title. ' добавлено и выставлено на витрину';
         }else {
-            $message = 'Product '.$product->title. ' was added and stored';
+            $message = 'Изделие '.$product->title. ' добавлено и перемещено в склад';
         }
 
         return redirect('/admin/shop')->with('message', $message);
@@ -198,11 +198,10 @@ class ProductController extends Controller
         }
 
         if ($product->is_active == 1) {
-            $message = 'Product '.$product->title. ' was added and available';
+            $message = 'Изделие '.$product->title. ' добавлено и выставлено на витрину';
         }else {
-            $message = 'Product '.$product->title. ' was added and stored';
+            $message = 'Изделие '.$product->title. ' добавлено и перемещено в склад';
         }
-
         return redirect('/admin/shop')->with('message', $message);
     }
 

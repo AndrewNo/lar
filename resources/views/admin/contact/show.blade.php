@@ -6,9 +6,9 @@
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Name</td>
+                <td>Имя</td>
                 <td>E-mail</td>
-                <td>Comment</td>
+                <td>Сообщение</td>
             </tr>
             </thead>
             <tbody>

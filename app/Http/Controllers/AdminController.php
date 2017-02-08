@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Page;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
-
 
 
     public function index()
@@ -29,7 +30,7 @@ class AdminController extends Controller
 
         $page->save();
 
-        return redirect('/admin/')->with('message', 'Changes is saved');
+        return redirect('/admin/')->with('message', 'Изменения сохранены успешно');
     }
 
     public function getLogin()
@@ -51,7 +52,7 @@ class AdminController extends Controller
             return redirect('/admin/');
         }
 
-        dd('wrong');
+        return back();
 
     }
 
@@ -60,5 +61,35 @@ class AdminController extends Controller
         \Auth::logout();
 
         return redirect('/admin/login');
+    }
+
+    public function showSettings()
+    {
+
+        $user = \Auth::user();
+
+        return view('admin.settings.show', ['user' => $user]);
+    }
+
+    public function updateSettings(Request $request, $id)
+    {
+        $data = $request->all();
+        $user = User::find($id);
+
+        if ($data['old_password'] != null || $data['new_password'] != null) {
+            if (Hash::check($data['old_password'], $user->password)) {
+                $user->password = bcrypt($data['new_password']);
+            } else {
+                return back()->with('message', 'Не верный старый пароль');
+            }
+        }
+
+        $user->login = $data['login'];
+        $user->email = $data['email'];
+
+
+        $user->save();
+
+        return back()->with('message', 'Данные успешно обновлены');
     }
 }

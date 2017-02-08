@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/admin/categories')->with('message', 'Category '.$category->title. ' was added!');
+        return redirect('/admin/categories')->with('message', 'Категория '.$category->title. ' добавлена!');
     }
 
     public function catEdit($id)
@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/admin/categories')->with('message', 'Category '.$category->title. ' was edited!');
+        return redirect('/admin/categories')->with('message', 'Категория '.$category->title. ' сохранена!');
     }
 
     public function catDelete($id)

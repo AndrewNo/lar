@@ -50,7 +50,11 @@
             relative_urls: false
         });
     </script>
-
+    <style>
+        .sub:hover .dropdown-menu{
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -59,33 +63,45 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/admin">AdminPanel</a>
+            <a class="navbar-brand" href="/admin">Админ Панель</a>
         </div>
         @if(Auth::check())
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class=" @if(URL::current() == url('/admin/blog')) active @endif "><a href="/admin/blog">Blog</a></li>
-                <li class=" @if(URL::current() == url('/admin/categories')) active @endif "><a href="/admin/categories">Categories</a></li>
-                <li class=" @if(URL::current() == url('/admin/shop')) active @endif "><a href="/admin/shop">Shop</a></li>
-                <li class=" @if(URL::current() == url('/admin/gallery')) active @endif "><a href="/admin/gallery">Gallery</a></li>
-                <li class=" @if(URL::current() == url('/admin/orders')) active @endif "><a href="/admin/orders">Orders</a></li>
-                <li class=" @if(URL::current() == url('/admin/contacts')) active @endif "><a href="/admin/contacts">Contact</a></li>
+            <div id="navbar" class="navbar-collapse collapse" style="position: relative">
+                <ul class="nav navbar-nav">
+                    <li class=" @if(URL::current() == url('/admin/shop')) active @endif sub"><a
+                                href="/admin/shop">Магазин</a>
+                    <ul class="dropdown-menu">
+                        <li class=" @if(URL::current() == url('/admin/categories')) active @endif "><a
+                                    href="/admin/categories">Категории</a></li>
+                    </ul>
+                    </li>
+                    <li class=" @if(URL::current() == url('/admin/gallery')) active @endif "><a
+                                href="/admin/gallery">Галлерея</a></li>
+                    <li class=" @if(URL::current() == url('/admin/blog')) active @endif "><a
+                                href="/admin/blog">Блог</a></li>
 
-                <li>
+                    <li class=" @if(URL::current() == url('/admin/orders')) active @endif "><a
+                                href="/admin/orders">Заказы</a></li>
+                    <li class=" @if(URL::current() == url('/admin/contacts')) active @endif "><a
+                                href="/admin/contacts">Сообщения</a></li>
+                    <li class=" @if(URL::current() == url('/admin/settings')) active @endif "><a
+                                href="/admin/settings">Настройки</a></li>
+                </ul>
+                <div style="position: absolute; right: 0; top: 7px;">
                     <form action="/admin/logout" method="post">
                         {{ csrf_field() }}
-                        <input type="submit" value="Log Out" class="btn-sm btn-danger">
+                        <input type="submit" value="Выйти" class="btn-sm btn-danger">
                     </form>
-                </li>
-            </ul>
-        </div>
-        @endif<!--/.nav-collapse -->
+                </div>
+            </div>
+    @endif<!--/.nav-collapse -->
     </div>
 </nav>
 
@@ -93,7 +109,6 @@
 
 
     @yield('content')
-
 
 
 </div> <!-- /container -->

@@ -6,13 +6,13 @@
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Name</td>
+                <td>Имя</td>
                 <td>E-mail</td>
-                <td>Phone</td>
-                <td>City</td>
-                <td>Comment</td>
-                <td>Date</td>
-                <td>Action</td>
+                <td>Телефон</td>
+                <td>Город</td>
+                <td>Комментарий</td>
+                <td>Дата</td>
+                <td>Действие</td>
             </tr>
             </thead>
             <tbody>
@@ -29,10 +29,10 @@
                         <form action="/admin/order-done/{{ $order->id }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="put">
-                            <button type="submit" class="btn btn-group-sm btn-primary">Done</button>
+                            <button type="submit" class="btn btn-group-sm btn-primary">Отметить как сделано</button>
                         </form>
                     </td>
-                    <td><a href="#" class="btn btn-info my_show">Show Details</a>
+                    <td><a href="#" class="btn btn-info my_show">Показать детали</a>
                         <div class="product">
 
 
@@ -40,14 +40,14 @@
                             <thead>
                             <tr>
                                 <td>Id</td>
-                                <td>Product</td>
+                                <td>Изделие</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>{{ $order->product['id'] }}</td>
                                 <td>{{ $order->product['title'] }}</td>
-                                <td><a href="#" class="btn btn-info my_hide">Hide</a></td>
+                                <td><a href="#" class="btn btn-info my_hide">Спрятать</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -57,7 +57,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="/admin/order/arch" class="btn btn-primary">Archive of orders</a>
+        <a href="/admin/order/arch" class="btn btn-primary">Архив заказов</a>
     </div>
 
     <script>

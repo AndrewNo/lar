@@ -47,6 +47,9 @@ Route::group(['prefix' => 'admin'], function (){
 
     Route::delete('img-delete/{id}', 'FileController@deleteImg')->middleware('auth');
 
+    Route::get('settings', 'AdminController@showSettings')->middleware('auth');
+    Route::put('settings-update/{id}', 'AdminController@updateSettings')->middleware('auth');
+
 });
 
 Route::get('/', 'PageController@index');

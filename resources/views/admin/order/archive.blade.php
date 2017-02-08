@@ -6,12 +6,12 @@
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Name</td>
+                <td>Имя</td>
                 <td>E-mail</td>
-                <td>Phone</td>
-                <td>City</td>
-                <td>Comment</td>
-                <td>Date</td>
+                <td>Телефон</td>
+                <td>Город</td>
+                <td>Комментарий</td>
+                <td>Дата</td>
             </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                     <td>{{ $order->city }}</td>
                     <td>{{ $order->comment }}</td>
                     <td>{{ $order->created_at }}</td>
-                    <td><a href="#" class="btn btn-info my_show">Show Details</a>
+                    <td><a href="#" class="btn btn-info my_show">Показать детали</a>
                         <div class="product">
 
 
@@ -32,14 +32,14 @@
                                 <thead>
                                 <tr>
                                     <td>Id</td>
-                                    <td>Product</td>
+                                    <td>Изделие</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>{{ $order->product['id'] }}</td>
                                     <td>{{ $order->product['title'] }}</td>
-                                    <td><a href="#" class="btn btn-info my_hide">Hide</a></td>
+                                    <td><a href="#" class="btn btn-info my_hide">Спрятать</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -49,7 +49,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="/admin/orders" class="btn btn-primary">Back</a>
+        <a href="/admin/orders" class="btn btn-primary">Назад</a>
     </div>
 
     <script>

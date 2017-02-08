@@ -12,10 +12,10 @@ text-align: center; padding-top: 50px; font-size: 20px;">
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Title</td>
-                <td>Content</td>
-                <td>Action</td>
-                <td>Action</td>
+                <td>Название</td>
+                <td>Содержание</td>
+                <td>Действие</td>
+                <td>Действие</td>
             </tr>
             </thead>
             <tbody>
@@ -23,13 +23,13 @@ text-align: center; padding-top: 50px; font-size: 20px;">
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title  }}</td>
-                    <td>{{ $post->content }}</td>
-                    <td><a href="/admin/post-edit/{{ $post->id }}">Edit</a></td>
+                    <td>{!!  $post->content !!}</td>
+                    <td><a href="/admin/post-edit/{{ $post->id }}">Редактировать</a></td>
                     <td>
                         <form action="/admin/post-delete/{{ $post->id }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-group-sm btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-group-sm btn-danger del">Удалить</button>
                         </form>
                     </td>
                 </tr>
@@ -39,8 +39,8 @@ text-align: center; padding-top: 50px; font-size: 20px;">
         </table>
     </div>
     <div class="page-header">
-        <a href="/admin/post-add" class="btn btn-primary">New post</a>
-        <a href="/admin/post/drafts" class="btn btn-primary">Drafts</a>
+        <a href="/admin/post-add" class="btn btn-primary">Новый пост</a>
+        <a href="/admin/post/drafts" class="btn btn-primary">Черновики</a>
     </div>
     <script>
         $(document).ready(function () {
@@ -48,8 +48,8 @@ text-align: center; padding-top: 50px; font-size: 20px;">
                 $('.alert-info').hide('slow')
             }, 3000);
 
-            $('.btn-danger').on('click', function (e) {
-                if (!confirm('Are you delete this?')){
+            $('.del').on('click', function (e) {
+                if (!confirm('Вы уверены, что хотите удалить данный пост?')){
                     e.preventDefault();
                 }
 

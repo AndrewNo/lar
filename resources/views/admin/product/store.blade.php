@@ -6,14 +6,14 @@
             <thead>
             <tr>
                 <td>Id</td>
-                <td>Title</td>
-                <td>Image</td>
-                <td>Description</td>
-                <td>Category</td>
-                <td>New</td>
-                <td>Position</td>
-                <td>Action</td>
-                <td>Action</td>
+                <td>Наименование</td>
+                <td>Изображение</td>
+                <td>Описание</td>
+                <td>Категория</td>
+                <td>Новинка</td>
+                <td>Позиция</td>
+                <td>Действие</td>
+                <td>Действие</td>
             </tr>
             </thead>
             <tbody>
@@ -35,12 +35,12 @@
                     @endif
 
                     <td>{{ $product->position }}</td>
-                    <td><a href="/admin/product-edit/{{ $product->id }}">Edit</a></td>
+                    <td><a href="/admin/product-edit/{{ $product->id }}">Редактировать</a></td>
                     <td>
                         <form action="/admin/product-delete/{{ $product->id }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-group-sm btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-group-sm btn-danger del">Удалить</button>
                         </form>
                     </td>
                 </tr>
@@ -51,11 +51,11 @@
         </table>
     </div>
     <div class="page-header">
-        <a href="/admin/shop" class="btn btn-primary">Back</a>
+        <a href="/admin/shop" class="btn btn-primary">Назад</a>
     </div>
     <script>
-        $('.btn-danger').on('click', function (e) {
-            if (!confirm('Are you delete this?')){
+        $('.del').on('click', function (e) {
+            if (!confirm('Вы уверены, что хотите удалить данный товар?')){
                 e.preventDefault();
             }
 

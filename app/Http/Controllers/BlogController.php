@@ -38,9 +38,9 @@ class BlogController extends Controller
         $blog->save();
 
         if ($blog->is_active == 1) {
-            $message = 'Post '.$blog->title. ' was added and published';
+            $message = 'Пост '.$blog->title. ' сохранен и опубликован';
         }else {
-            $message = 'Post '.$blog->title. ' was added and saved in drafts';
+            $message = 'Пост '.$blog->title. ' добавлен и сохранен в черновиках';
         }
 
         return redirect('/admin/blog')->with('message', $message);
@@ -70,7 +70,12 @@ class BlogController extends Controller
         $post->is_active = $data['is_active'];
         $post->save();
 
-        return redirect('/admin/blog')->with('message', 'Post '.$post->title.' saved');
+        if ($post->is_active == 1) {
+            $message = 'Пост '.$post->title. ' сохранен и опубликован';
+        }else {
+            $message = 'Пост '.$post->title. ' добавлен и сохранен в черновиках';
+        }
+        return redirect('/admin/blog')->with('message', $message);
     }
 
     public function postDelete($id)
