@@ -57,7 +57,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="/admin/order/arch" class="btn btn-primary">Архив заказов</a>
+        <a href="/admin/order/arch" class="btn btn-primary">Архив заказов ({{ $archive }})</a>
     </div>
 
     <script>

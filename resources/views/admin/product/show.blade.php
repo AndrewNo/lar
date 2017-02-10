@@ -55,7 +55,7 @@ text-align: center; padding-top: 50px; font-size: 20px;">
     </div>
     <div class="page-header">
         <a href="/admin/product-add" class="btn btn-primary">Добавить изделие</a>
-        <a href="/admin/product/store" class="btn btn-primary">Не опубликовыные изделия</a>
+        <a href="/admin/product/store" class="btn btn-primary">Не опубликовыные изделия ({{ $store }})</a>
     </div>
     <script>
         $(document).ready(function () {

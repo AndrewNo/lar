@@ -14,7 +14,9 @@ class OrderController extends Controller
     {
         $orders = Order::where('is_done', '=', 0)->get();
 
-        return view('admin.order.show', ['orders' => $orders]);
+        $archive = Order::where('is_done', '=', 1)->count();
+
+        return view('admin.order.show', ['orders' => $orders, 'archive' => $archive]);
     }
 
     public function orderDone($id)

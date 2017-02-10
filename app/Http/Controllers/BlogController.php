@@ -10,7 +10,11 @@ class BlogController extends Controller
     public function blogShow()
     {
         $posts = Blog::where('is_active', '=', 1)->get();
-        return view('admin.blog.show', ['posts' => $posts]);
+
+        $draft = Blog::where('is_active', '=', 0)->count();
+
+
+        return view('admin.blog.show', ['posts' => $posts, 'draft' => $draft]);
     }
 
     public function postAdd()

@@ -40,7 +40,7 @@ text-align: center; padding-top: 50px; font-size: 20px;">
     </div>
     <div class="page-header">
         <a href="/admin/post-add" class="btn btn-primary">Новый пост</a>
-        <a href="/admin/post/drafts" class="btn btn-primary">Черновики</a>
+        <a href="/admin/post/drafts" class="btn btn-primary">Черновики ({{ $draft }})</a>
     </div>
     <script>
         $(document).ready(function () {

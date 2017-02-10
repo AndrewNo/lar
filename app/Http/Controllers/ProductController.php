@@ -14,8 +14,9 @@ class ProductController extends Controller
     {
         $products = Product::active()->get();
 
+        $store = Product::where('is_active', '=', 0)->count();
 
-        return view('admin.product.show', ['products' => $products]);
+        return view('admin.product.show', ['products' => $products, 'store' => $store]);
     }
 
     public function prodAdd()
