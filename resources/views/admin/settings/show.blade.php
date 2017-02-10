@@ -37,6 +37,8 @@ text-align: center; padding-top: 50px; font-size: 20px;">
         <div class="form-group">
             <input type="submit" value="Сохранить" class="btn btn-primary">
         </div>
+
+        @include('admin.tpls.errors')
     </form>
     <script>
         $(document).ready(function () {

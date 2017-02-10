@@ -41,6 +41,13 @@ class AdminController extends Controller
     public function postLogin(Request $request)
 
     {
+
+        $this->validate(request(), [
+            'login' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+
         $data = $request->all();
 
         $attempt = \Auth::attempt([
@@ -52,7 +59,9 @@ class AdminController extends Controller
             return redirect('/admin/');
         }
 
-        return back();
+        return back()->withErrors([
+            'message' => 'Не правильно введен пароль или логин. Попробуйте еще раз!'
+        ]);
 
     }
 
@@ -73,6 +82,12 @@ class AdminController extends Controller
 
     public function updateSettings(Request $request, $id)
     {
+
+        $this->validate(request(), [
+            'login' => 'required',
+            'email' => 'required|email'
+        ]);
+
         $data = $request->all();
         $user = User::find($id);
 

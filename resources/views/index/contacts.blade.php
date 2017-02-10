@@ -1,6 +1,7 @@
 @extends('index.base')
 
 @section('content')
+
     <div class="content">
         <div class="jumbotron">
             <p>Send me message:</p>

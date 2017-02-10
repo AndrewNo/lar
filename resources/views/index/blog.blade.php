@@ -1,11 +1,16 @@
 @extends('index.base')
 
 @section('content')
+    <div class="fff"></div>
+
     <div class="content">
         @foreach($posts as $post)
-            <a href="/blog/{{ $post->id }}"><h1>{{ $post->title }}</h1></a>
-            <p>{!! $post->content !!}</p>
-            <p>{{  $post->created_at }}</p>
+            <div class="blog_posts">
+                <a href="/blog/{{ $post->id }}"><h1>{{ $post->title }}</h1></a>
+                <p>{!! $post->content !!}</p>
+                <p>{{  $post->created_at }}</p>
+            </div>
         @endforeach
     </div>
+
 @stop

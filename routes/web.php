@@ -68,3 +68,11 @@ Route::get('shop/{id}', 'ProductController@indexProductShow');
 Route::post('shop/order-store', 'OrderController@indexOrderStore');
 
 Route::get('gallery', 'GalleryController@indexShow');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
