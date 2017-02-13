@@ -190,10 +190,6 @@ ul.nav li:nth-child(2n) {
     margin-top: 50px;
 }
 
-.order {
-    display: none;
-}
-
 .shop_product_one_container {
     width: 100%;
     box-sizing: border-box;
@@ -201,6 +197,37 @@ ul.nav li:nth-child(2n) {
     vertical-align: middle;
 }
 
+.order {
+    display: none;
+    width: 500px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+    z-index: 2;
+}
+
+.order_label {
+    display: block;
+     margin-bottom: 20px;
+     margin-top: 20px;
+ }
+.order .contact_btn {
+    margin-bottom: 20px;
+}
+
+.order_close {
+    font-weight: 900;
+    text-align: right;
+    padding: 20px;
+}
+
+.order_close:hover{
+    cursor: pointer;
+}
 /*Blog page*/
 .blog_posts {
     margin: 0 auto;
@@ -252,3 +279,4 @@ ul.nav li:nth-child(2n) {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     font-family: 'Raleway', sans-serif;
 }
+
