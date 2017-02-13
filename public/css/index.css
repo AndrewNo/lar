@@ -202,3 +202,53 @@ ul.nav li:nth-child(2n) {
 }
 
 /*Blog page*/
+.blog_posts {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blog_posts a {
+    text-decoration: none;
+}
+
+.blog_posts_time {
+    font-style: italic;
+}
+
+/*Contacts page*/
+.contact_great {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.contact_form {
+    width: 500px;
+}
+
+.contact_label {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.contact_input {
+    width: 250px;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #2a88bd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.contact_btn {
+    margin-top: 20px;
+    border: 1px solid #1b6d85;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 100;
+    color: white;
+    padding: 20px;
+    background-color: #2b669a;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    font-family: 'Raleway', sans-serif;
+}
