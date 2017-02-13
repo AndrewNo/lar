@@ -59,7 +59,7 @@
                 <textarea name="comment" id="comment" cols="30" rows="10" class="contact_input"></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" value="Order" class="contact_btn">
+                <input type="submit" value="Заказать" class="contact_btn">
             </div>
         </form>
     </div>
