@@ -3,7 +3,12 @@
 @section('content')
 
     <div class="content">
-
+        @if(Session::has('message'))
+            <div class="alert-info" style="width: 500px; height: 150px; margin: 0 auto;
+text-align: center; padding-top: 50px; font-size: 20px;">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+        @endif
         @include('index.categories')
 
         <div class="shop_product">
@@ -35,7 +40,7 @@
     <div class="clearfix"></div>
     <div class="order">
         <div class="order_close">X</div>
-        <form action="order-store" method="post" class="form-group col-lg-9">
+        <form action="{{ url('shop/order-store') }}" method="post" class="form-group col-lg-9">
             {{ csrf_field() }}
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <div class="form-group">
@@ -65,6 +70,11 @@
     </div>
     <script>
         $(document).ready(function () {
+
+            setTimeout(function () {
+                $('.alert-info').hide('slow')
+            }, 3000);
+
             $('#send').on('click', function (e) {
                 e.preventDefault();
                 document.body.scrollTop = 0;

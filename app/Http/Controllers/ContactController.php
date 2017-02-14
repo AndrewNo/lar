@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactShipped;
+
+use App\Mail\UserContact;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -30,8 +31,8 @@ class ContactController extends Controller
 
         $contact->save();
 
-        \Mail::to('andrewenot@gmail.com')->send(new ContactShipped($contact));
+        \Mail::to('andrewenot@gmail.com')->send(new UserContact($contact));
 
-        return back();
+        return back()->with('message', 'Ваше сообщение успешно отпрвлено. В ближайшее время мы Вам ответим');
     }
 }

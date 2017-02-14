@@ -3,13 +3,12 @@
 namespace App\Mail;
 
 use App\Models\Contact;
-use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderShipped extends Mailable
+class UserContact extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +17,12 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct(Order $order)
+
+    public $contact;
+
+    public function __construct(Contact $contact)
     {
-        $this->order = $order;
+        $this->contact = $contact;
     }
 
     /**
@@ -30,9 +32,6 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-
-        return $this->view('email.userOrder', ['order' => $this->order]);
-
-
+        return $this->markdown('email.userContact');
     }
 }

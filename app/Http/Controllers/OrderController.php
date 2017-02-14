@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
+
+use App\Mail\MyOrder;
 use App\Mail\OrderShipped;
+use App\Mail\UserOrder;
 use App\Models\Order;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -43,17 +44,12 @@ class OrderController extends Controller
 
         $order->save();
 
+        \Mail::to('andrewenot@gmail.com')->send(new MyOrder($order));
 
-        //mail/order to owner of site
-        Mail::send('email.order', ['order' => $order], function ($m){
-            $m->from('andrewenot@gmail.com', 'Your site');
-            $m->to('andrewenot@gmail.com')->subject('New Order');
-        });
+        \Mail::to($order->email)->send(new UserOrder($order));
 
-        //mail/order to user
-        Mail::to($order->email)->send(new OrderShipped($order));
 
-        return back();
+        return back()->with('message', 'Спасибо за заказ. В скором времени мы с Вами свяжемся');
     }
 
     public function archiveShow()

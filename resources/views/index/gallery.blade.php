@@ -2,13 +2,12 @@
 @section('content')
 
     <div class="content">
-
-            @foreach($images as $image)
-
-                <img class="slide" src="{{ $image->image }}" width="250"/>
-
-            @endforeach
-
+            <div class="fotorama" data-nav="thumbs">
+                @foreach($images as $image)
+                        <img class="slide" src="{{ $image->image }}" width="250"/>
+                @endforeach
+            </div>
     </div>
+
 
 @stop
