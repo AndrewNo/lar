@@ -23,6 +23,13 @@ class ContactController extends Controller
 
     public function indexContactStore(Request $request, Contact $contact)
     {
+        $this->validate(request(), [
+            'name' => 'required|min:4',
+            'email' => 'required|email',
+            'comment' => 'required|min:10'
+
+        ]);
+
         $data = $request->all();
 
         $contact->name = $data['name'];

@@ -33,6 +33,12 @@ class OrderController extends Controller
 
     public function indexOrderStore(Request $request, Order $order)
     {
+        $this->validate(request(), [
+
+            'email' => 'required|email',
+
+        ]);
+
         $data = $request->all();
 
         $order->product_id = $data['product_id'];

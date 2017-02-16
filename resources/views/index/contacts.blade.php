@@ -30,6 +30,7 @@ text-align: center; padding-top: 50px; font-size: 20px;">
             <div class="form-group">
                 <input type="submit" value="Отправить сообщение" class="contact_btn">
             </div>
+            @include('admin.tpls.errors')
         </form>
     </div>
     <script>
