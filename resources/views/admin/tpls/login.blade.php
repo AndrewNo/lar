@@ -1,4 +1,4 @@
-@extends('admin.base');
+@extends('admin.base')
 
 @section('content')
     <form action="login" method="post" class="form-group col-lg-6">

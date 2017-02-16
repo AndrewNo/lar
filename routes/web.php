@@ -1,9 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'admin'], function (){
-
-
-
     Route::get('/', 'AdminController@index')->middleware('auth');
     Route::put('update/{id}', 'AdminController@update')->middleware('auth');
 
