@@ -15,20 +15,20 @@ text-align: center; padding-top: 50px; font-size: 20px;">
             <h2>{{ $product->title }}</h2>
             <div class="shop_product_one_container">
                 <div class="shop_product_item_one_product">
-                    @if($product->is_new)
-                        <img src="{{asset('/backgrounds/new.png')}}" alt="" class="product_new" style="position:
-                        absolute; width: 150px">
-                    @endif
+
                     @foreach($product->images as $image)
                         @if($image->type == 'main')
-                            <img src="{{ $image->image }}" alt="" width="150" height="550">
+                            <img src="{{ $image->image }}" alt="">
                         @endif
                     @endforeach
                     @foreach($product->images as $image)
                         @if($image->type == 'cover')
-                            <img src="{{ $image->image }}" alt="" width="150" height="250">
+                            <img src="{{ $image->image }}" alt="" >
                         @endif
                     @endforeach
+                        @if($product->is_new)
+                            <div class="product_new"></div>
+                        @endif
                 </div>
                 <div class="shop_product_item_one_product">
                     <p>{{ $product->descr }}</p>

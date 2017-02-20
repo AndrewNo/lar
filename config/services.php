@@ -15,7 +15,7 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'sandboxc3274b5058ed48cb88aeecd9efbc30fd.mailgun.org',
+        'domain' => 'myjev.zzz.com.ua',
         'secret' => 'key-7ea8d29baa54eed84d5e1133496917ac',
     ],
 
