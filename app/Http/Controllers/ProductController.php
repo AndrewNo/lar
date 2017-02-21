@@ -73,7 +73,7 @@ class ProductController extends Controller
         if (!empty($request->file('image'))) {
 
             $file = new File();
-            $name = substr($file_data->getBasename(), 0, -4);
+            $name = date('dmYhms');
 
             Image::make($request->file('image'))->save($uploads . $name . '.' . $file_data->getClientOriginalExtension());
 
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
 
                 $file = new File();
-                $name = substr($photo['image']->getBasename(), 0, -4);
+                $name = date('dmYhms');
 
                 Image::make($photo['image'])->save($uploads . $name . '.' .
                     $photo['image']->getClientOriginalExtension());
@@ -173,7 +173,8 @@ class ProductController extends Controller
                 $file = new File();
             }
 
-            $name = substr($file_data->getBasename(), 0, -4);
+            $name = date('dmYhms');
+
 
             Image::make($request->file('image'))->save($uploads . $name . '.' . $file_data->getClientOriginalExtension());
 
@@ -189,7 +190,7 @@ class ProductController extends Controller
 
 
                 $file = new File();
-                $name = substr($photo['image']->getBasename(), 0, -4);
+                $name = date('dmYhms');
 
                 Image::make($photo['image'])->save($uploads . $name . '.' .
                     $photo['image']->getClientOriginalExtension());
