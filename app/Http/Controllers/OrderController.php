@@ -50,9 +50,9 @@ class OrderController extends Controller
 
         $order->save();
 
-        \Mail::to('andrewenot@gmail.com')->send(new MyOrder($order));
+        /*\Mail::to('andrewenot@gmail.com')->send(new MyOrder($order));
 
-        \Mail::to($order->email)->send(new UserOrder($order));
+        \Mail::to($order->email)->send(new UserOrder($order));*/
 
 
         return back()->with('message', 'Спасибо за заказ. В скором времени мы с Вами свяжемся');

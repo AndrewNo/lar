@@ -160,7 +160,6 @@ class ProductController extends Controller
 
         $product->save();
 
-
         if (!file_exists($uploads)) {
             mkdir($uploads);
         }

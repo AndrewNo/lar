@@ -38,7 +38,7 @@ class ContactController extends Controller
 
         $contact->save();
 
-        \Mail::to('andrewenot@gmail.com')->send(new UserContact($contact));
+        /*\Mail::to('andrewenot@gmail.com')->send(new UserContact($contact));*/
 
         return back()->with('message', 'Ваше сообщение успешно отпрвлено. В ближайшее время мы Вам ответим');
     }
