@@ -24,7 +24,7 @@
                     <td>{{ $order->phone }}</td>
                     <td>{{ $order->city }}</td>
                     <td>{{ $order->comment }}</td>
-                    <td>{{ $order->created_at }}</td>
+                    <td>{{ date('d.m.Y в H:i', strtotime($order->created_at))  }}</td>
                     <td>
                         <form action="/admin/order-done/{{ $order->id }}" method="post">
                             {{ csrf_field() }}

@@ -95,6 +95,8 @@ class BlogController extends Controller
     {
         $posts = Blog::all()->where('is_active', '=', 1);
 
+
+
         return view('index.blog', ['posts' => $posts]);
     }
 

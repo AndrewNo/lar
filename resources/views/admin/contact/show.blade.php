@@ -17,7 +17,7 @@
                     <td>{{ $contact->id }}</td>
                     <td>{{ $contact->name }}</td>
                     <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->comment }}</td>
+                    <td>{{ $contact->comment }} <p>от {{ date('d.m.Y в H:i', strtotime($contact->created_at)) }}</p></td>
                 </tr>
 
             @endforeach
