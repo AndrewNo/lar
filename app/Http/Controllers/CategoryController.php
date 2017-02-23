@@ -35,7 +35,7 @@ class CategoryController extends Controller
         }
 
         $category->title = $data['title'];
-        $category->alias = $data['alias'];
+        $category->alias = strtolower($data['alias']);
         $category->position = $position;
 
         $category->save();
@@ -57,7 +57,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->title = $data['title'];
-        $category->alias = $data['alias'];
+        $category->alias = strtolower($data['alias']);
 
 
         $category->save();

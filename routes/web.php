@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin'], function (){
     Route::delete('category-delete/{id}', 'CategoryController@catDelete')->middleware('auth');
 
     Route::get('shop', 'ProductController@prodShow')->middleware('auth');
+    Route::get('shop/category/{alias}', 'ProductController@byCategoryId')->middleware('auth');
     Route::get('product-add', 'ProductController@prodAdd')->middleware('auth');
     Route::post('product-store', 'ProductController@prodStore')->middleware('auth');
     Route::get('product-edit/{id}', 'ProductController@prodEdit')->middleware('auth');

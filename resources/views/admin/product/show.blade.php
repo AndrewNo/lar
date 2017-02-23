@@ -8,6 +8,17 @@ text-align: center; padding-top: 50px; font-size: 20px;">
         </div>
     @endif
     <div class="page-header">
+            <label for="select">Сортировать по категории:</label>
+            <select name="" id="select" class="form-group" style="width: 300px; padding: 10px;">
+                <option value="">Все категории</option>
+                @foreach($categories as $category)
+                    @if($category->id != 0)
+                        <option value="{{ $category->alias }}">{{ $category->title }}</option>
+                    @endif
+                @endforeach
+            </select>
+            <a href="/admin/shop/" class="btn btn-primary">Ok</a>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -71,6 +82,22 @@ text-align: center; padding-top: 50px; font-size: 20px;">
     </div>
     <script>
         $(document).ready(function () {
+
+            $('#select').on('change', function () {
+
+
+                var alias = $(this).val();
+                console.log(alias);
+                if (alias == '') {
+                    $('.btn').attr('href', '/admin/shop/');
+                } else {
+                    $('.btn').attr('href', '/admin/category/'+alias);
+                }
+
+
+            });
+
+
             setTimeout(function () {
                 $('.alert-info').hide('slow')
             }, 3000);

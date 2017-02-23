@@ -16,7 +16,9 @@ class ProductController extends Controller
 
         $store = Product::where('is_active', '=', 0)->count();
 
-        return view('admin.product.show', ['products' => $products, 'store' => $store]);
+        $categories = Category::all();
+
+        return view('admin.product.show', ['products' => $products, 'store' => $store, 'categories' => $categories]);
     }
 
     public function prodAdd()
@@ -244,6 +246,21 @@ class ProductController extends Controller
 
     }
 
+    public function byCategoryId($alias)
+    {
+
+        dd($alias);
+        $category = Category::where('alias', '=', $alias)->get()->toArray();
+
+        $products = Product::active()->where('category_id', '=', $category[0]['id'])->orderBy('position', 'desc')
+            ->get();
+
+        $categories = Category::orderBy('position', 'desc')->get();
+
+        return view('admin.product.show', ['products' => $products, 'categories' => $categories]);
+
+    }
+
     public function indexProductShow($id)
     {
         $product = Product::find($id);
@@ -275,7 +292,7 @@ class ProductController extends Controller
 
             $cat = [];
 
-            foreach ($someAction as $item){
+            foreach ($someAction as $item) {
                 $cat = $item;
             }
 
@@ -302,7 +319,7 @@ class ProductController extends Controller
 
             $cat = [];
 
-            foreach ($someAction as $item){
+            foreach ($someAction as $item) {
                 $cat = $item;
             }
 
